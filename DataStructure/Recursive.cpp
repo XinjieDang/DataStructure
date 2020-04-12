@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 #define DataType int;
-int fact(int n);
+int fact(int n);//递归转化为非递归
 
 
 //int fact(int n) {//递归 求10的阶乘

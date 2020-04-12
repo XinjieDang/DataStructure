@@ -1,5 +1,5 @@
 #include<iostream>
-using namespace std;
+using namespace std;//链式栈
 template < class T>
 struct LinkNode {//链表节点 
 	T data;        //链表数据域

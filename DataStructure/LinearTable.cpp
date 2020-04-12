@@ -4,7 +4,7 @@ typedef int DataType;
 enum Status { SUCCESS, FAIL, RANGE_ERROR, OVER_FLOW, EMPTY };
 //定义结点类型
 struct Node
-{
+{//线性表 链式存储
 public:
 	DataType data; //数据域
 	Node* next; //指针域

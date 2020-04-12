@@ -4,7 +4,7 @@
 using namespace std;
 enum Status { SUCCESS, FAIL, RANGE_ERROR, OVER_FLOW, EMPTY, FULL };
 class SeqList
-{
+{//线性表顺序存储
 private:
 	DataType* data;
 	int len;
@@ -42,7 +42,7 @@ int main(int argc, char** argv)
 	cout << "生成顺序表元素! " << endl;
 	for (int j = 1; j < 10; j++)
 	{
-		sl->insertDate(item, j);
+		sl->insertDate(item);
 		i++;
 
 	}
@@ -54,7 +54,7 @@ int main(int argc, char** argv)
 	    item = i;
 		cout << "请输入该数的插入位置!   ";
 		cin >> index;
-		sl->insertDate(item, index);
+		sl->insertDate(item);
 	}
 	cout << "success" << endl;
 	sl->display();

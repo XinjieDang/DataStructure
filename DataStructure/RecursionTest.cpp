@@ -1,5 +1,5 @@
 #include<iostream>
-using namespace std;
+using namespace std;//递归习题测试
 int  test() {//输入若干个整数，将它们累加求和，若输入整数为0，则算法结束，并画出输入2，-4,15,0的调用过程
 	int data, result;
 	data = 0;

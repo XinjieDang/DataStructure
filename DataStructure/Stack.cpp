@@ -1,5 +1,5 @@
 #include<iostream>
-using namespace std;
+using namespace std;//Õ»µÄÊµÏÖ
 template < class T>
 class SeqStack {
 	T* element;
