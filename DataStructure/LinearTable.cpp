@@ -20,6 +20,7 @@ public:
 	int  LocateData(const DataType& data) const;
 	Status  GetData(int i, DataType& data) const;
 	Status  InsertElemAtIndex(int i, const DataType& data);
+	Status  InsertElem(const DataType& data);
 	Status  DeleteElemAtIndex(int i, DataType& data);
 
 private:
@@ -60,9 +61,7 @@ int main(int argc, char** argv)
 		cout << "请输入要插入的第" << i << "个数!" << " ";
 		cin >> data;
 	    item = data;
-		cout << "请输入该数的插入位置!" << " ";
-		cin >> index;
-		sl->InsertElemAtIndex(index, item);
+		sl->InsertElem(item);
 	}
 	int num = sl->GetLength();
 	sl->TravalLinkList();
@@ -193,13 +192,30 @@ Status LinkList::InsertElemAtIndex(int i, const DataType& data)
 			index++;
 		}
 		Node* newp = new Node;  //新的节点
-		newp->next = p->next;   //新的节点指向插入位置元素
+		newp->next= p->next;   //新的节点指向插入位置元素
 		newp->data = data;      //要插入的数据赋值给新节点的data
 		p->next = newp;         //插入位置的前一个节点的next指向新节点
 		length++;
 		return SUCCESS;
 	}
 	return FAIL;
+}
+
+//有序插入 从小到大 附设头结点
+Status  LinkList::InsertElem(const DataType& data)
+{
+	Node* p;//头结点
+	p = head;
+	//如果不是链表最后一个结点并且该节点的值小于要插入的节点元素
+	while (p->next != NULL && p->next->data < data)
+		p = p->next; //如果插入的元素比它大指针往后移
+	//跳出循环
+	Node* newp = new Node;
+	newp->next = p->next;//插入位置元素 的next等于新插入元素的next
+	newp->data = data;
+	p->next = newp;// 插入位置元素的next指向插入元素
+	length++;
+	return SUCCESS;
 }
 
 //删除指定的数据

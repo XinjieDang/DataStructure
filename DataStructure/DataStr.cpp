@@ -39,21 +39,11 @@ int main(int argc, char** argv)
 	SeqList* sl = new SeqList(30);
 	DataType i = 1;
 	DataType& item = i;
-	cout << "生成顺序表元素! " << endl;
-	for (int j = 1; j < 10; j++)
-	{
-		sl->insertDate(item);
-		i++;
-
-	}
-	sl->display();
 	for (int j = 1; j < 3; j++)
 	{
 		cout << "请输入要插入的第" << j << "个数！  ";
 		cin >> i;
 	    item = i;
-		cout << "请输入该数的插入位置!   ";
-		cin >> index;
 		sl->insertDate(item);
 	}
 	cout << "success" << endl;
@@ -114,23 +104,20 @@ int main(int argc, char** argv)
 //}
 Status SeqList::insertDate(const DataType& item)//有序表插入元素
 {
-	//1、从尾到头 ，比对找位置
-	int i = 0;
-	for (int i; i= len - 1; i--) {
-		if (item >= data[i])
-			break;
-		else
-		data[i + 1] = data[i];
+	int i = len;
+	if (len == maxLen)
+		return OVER_FLOW;
+	else {
+		while (i>0&&data[i-1]>item)//1、从尾到头 ，比对找位置
+		{
+			data[i] = data[i - 1];
+			i--;
+		}
+		data[i] = item;           //2、插入
+		len++;
+		return SUCCESS;
 	}
-	//2、插入
-	data[i] = item;
-	len++;
-	return SUCCESS;
 }
-
-
-
-
 Status  SeqList::deleteMarkDate(const DataType& item)
 {//删除顺序表中值为e的所有元素
 
