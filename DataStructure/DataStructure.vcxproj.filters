@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\DataStructureTest\DataStructureTest\01_LinearTable1761300127.cpp">
-      <Filter>源文件\DataStructureTest</Filter>
-    </ClCompile>
     <ClCompile Include="AdjacencyList.cpp">
       <Filter>源文件\DataStructure</Filter>
     </ClCompile>
@@ -62,6 +59,9 @@
     </ClCompile>
     <ClCompile Include="Stack.cpp">
       <Filter>源文件\DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="01_LinearTable1761300127s.cpp">
+      <Filter>源文件\DataStructureTest</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -138,7 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\DataStructureTest\DataStructureTest\01_LinearTable1761300127.cpp" />
+    <ClCompile Include="01_LinearTable1761300127s.cpp" />
     <ClCompile Include="AdjacencyList.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
