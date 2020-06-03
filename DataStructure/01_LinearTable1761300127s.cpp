@@ -12,7 +12,7 @@ struct ElemType              // 数据元素的类型
 	int tel;
 };
 
-const int MAXSIZE = 10;     // 数组的容量
+const int MAXSIZE = 3;     // 数组的容量
 
 class Sqlist
 {
@@ -76,7 +76,7 @@ ElemType Sqlist::Delet(int i)
 	}
 	else {
 		x = elem[i - 1];
-		for (int j = i; i < length; j++)
+		for (int j = i; j< length; j++)
 			elem[j - 1] = elem[j];
 		length--;
 		cout << "删除成功!";

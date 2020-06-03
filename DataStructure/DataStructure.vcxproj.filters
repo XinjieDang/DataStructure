@@ -63,5 +63,8 @@
     <ClCompile Include="01_LinearTable1761300127s.cpp">
       <Filter>源文件\DataStructureTest</Filter>
     </ClCompile>
+    <ClCompile Include="02_LinkTable1761300127.cpp">
+      <Filter>源文件\DataStructureTest</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
