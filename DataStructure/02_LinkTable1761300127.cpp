@@ -29,7 +29,7 @@ public:
 	void DeleteAll(); //删除所有数据  
 	void DeleteElemAtPoint(DataType data); //删除指定的数据    
 	void DeleteElemAtHead(); //在头部删除节点
-	void sort_list(Node* pHead);//冒泡排序
+	void Bubble_sort(Node* pHead);//冒泡排序
 	void sort_insert(Node* pHead);//插入排序
 private:
 	Node* head; //头结点
@@ -113,7 +113,7 @@ bool LinkList::IsEmpty()
 //查找节点
 Node* LinkList::Find(DataType data)
 {
-	
+	index = 1;
 	Node* p = head->next;
 	if (p == NULL) { //当为空表时，报异常      
 		cout << "此链表为空链表" << endl;
@@ -152,7 +152,7 @@ void LinkList::InsertElemAtEnd(DataType data)
 		}
 		p->next = newNode;
 	}
-	sort_list(head);
+	Bubble_sort(head);
 }
 //在指定位置插入指定元素
 void LinkList::InsertElemAtIndex(DataType data, int n)
@@ -172,7 +172,7 @@ void LinkList::InsertElemAtIndex(DataType data, int n)
 		}
 		ptemp->next = p->next; //将新节点插入到指定位置      
 		p->next = ptemp;
-		sort_list(head);
+		Bubble_sort(head);
 	}
 }
 //在头部插入指定元素
@@ -267,11 +267,14 @@ void LinkList::DeleteElemAtHead()
 
 
 
-void  LinkList::sort_list(Node* pHead)//冒泡排序
+void  LinkList::Bubble_sort(Node* pHead)//冒泡排序
 {
 	Node* p, * q;
 	DataType temp;
-	for (p = pHead->next; p != NULL; p = p->next)
+	bool flag = true;//增设标志位，判断是否已经完成排序
+	for (p = pHead->next; p != NULL && flag; p = p->next)
+	{ 
+		flag = false;
 		for (q = p->next; q != NULL; q = q->next)
 		{
 			if (p->data > q->data)
@@ -279,8 +282,10 @@ void  LinkList::sort_list(Node* pHead)//冒泡排序
 				temp = p->data;
 				p->data = q->data;
 				q->data = temp;
+				flag = true;
 			}
 		}
+	}
 }
 
 
@@ -340,6 +345,7 @@ int main()
 			if (l.Find(data)){
 				cout << "链表中存在该节点" << endl;
 				cout << "该元素的位置为:" << index << endl;
+				
 			}
 			else
 				cout << "链表中找不到该节点" << endl;
