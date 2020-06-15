@@ -30,7 +30,7 @@ public:
 	void DeleteElemAtPoint(DataType data); //删除指定的数据    
 	void DeleteElemAtHead(); //在头部删除节点
 	void Bubble_sort(Node* pHead);//冒泡排序
-	void sort_insert(Node* pHead);//插入排序
+	void insert_sort(Node* pHead);//插入排序
 private:
 	Node* head; //头结点
 };
@@ -113,7 +113,7 @@ bool LinkList::IsEmpty()
 //查找节点
 Node* LinkList::Find(DataType data)
 {
-	index = 1;
+	//index = 1;
 	Node* p = head->next;
 	if (p == NULL) { //当为空表时，报异常      
 		cout << "此链表为空链表" << endl;
@@ -130,7 +130,7 @@ Node* LinkList::Find(DataType data)
 			p = p->next;
 			index++;
 		}
-		return NULL; //未查询到结
+		return NULL; //未查询到结果
 	}
 }
 //在尾部插入指定的元素
@@ -152,7 +152,8 @@ void LinkList::InsertElemAtEnd(DataType data)
 		}
 		p->next = newNode;
 	}
-	Bubble_sort(head);
+	//Bubble_sort(head);
+	insert_sort(head);
 }
 //在指定位置插入指定元素
 void LinkList::InsertElemAtIndex(DataType data, int n)
@@ -172,8 +173,10 @@ void LinkList::InsertElemAtIndex(DataType data, int n)
 		}
 		ptemp->next = p->next; //将新节点插入到指定位置      
 		p->next = ptemp;
-		Bubble_sort(head);
+		
 	}
+	//Bubble_sort(head);
+	insert_sort(head);
 }
 //在头部插入指定元素
 void LinkList::InsertElemAtHead(DataType data)
@@ -187,8 +190,8 @@ void LinkList::InsertElemAtHead(DataType data)
 	}
 	newNode->next = p->next; //将新节点插入到指定位置    
 	p->next = newNode;
-	//sort_list(head);
-	sort_insert(head);
+	//Bubble_sort(head);
+	insert_sort(head);
 }
 //在尾部删除元素
 void LinkList::DeleteElemAtEnd()
@@ -271,10 +274,7 @@ void  LinkList::Bubble_sort(Node* pHead)//冒泡排序
 {
 	Node* p, * q;
 	DataType temp;
-	bool flag = true;//增设标志位，判断是否已经完成排序
-	for (p = pHead->next; p != NULL && flag; p = p->next)
-	{ 
-		flag = false;
+	for (p = pHead->next; p != NULL; p = p->next)
 		for (q = p->next; q != NULL; q = q->next)
 		{
 			if (p->data > q->data)
@@ -282,31 +282,28 @@ void  LinkList::Bubble_sort(Node* pHead)//冒泡排序
 				temp = p->data;
 				p->data = q->data;
 				q->data = temp;
-				flag = true;
+				
 			}
 		}
-	}
+	
 }
 
-
-
-void  LinkList::sort_insert(Node* pHead)//插入排序
+void  LinkList::insert_sort(Node* pHead)//插入排序
 {
 	Node* p, * pre ,* q;
 	p = pHead->next->next;//指向第二个结点元素
 	pHead->next ->next = NULL;//构造只有一个数据元素的链表
-	while (p->next != NULL)
+	while (p != NULL)
 	{
 		q = p->next;//保存 p结点后的元素指针
 		pre = pHead;//从头结点开始比较
-		while (pre->next != NULL && pre->next->data < p->data)
+		while (pre->next != NULL && pre->next->data <=p->data)//按从小到大
 			pre = pre->next;
 			p->next = pre->next;
 			pre->next = p;
 			p = q;
 	}
 }
-
 
 //测试函数
 int main()
@@ -345,6 +342,7 @@ int main()
 			if (l.Find(data)){
 				cout << "链表中存在该节点" << endl;
 				cout << "该元素的位置为:" << index << endl;
+				index = 1;
 				
 			}
 			else
