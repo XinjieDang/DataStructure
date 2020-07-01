@@ -72,10 +72,7 @@
     <ClCompile Include="04_queue1761300127.cpp">
       <Filter>源文件\DataStructureTest</Filter>
     </ClCompile>
-    <ClCompile Include="04_queue1761300127(2).cpp">
-      <Filter>源文件\DataStructureTest</Filter>
-    </ClCompile>
-    <ClCompile Include="Test_kuohao.cpp">
+    <ClCompile Include="05_Str1761300127.cpp">
       <Filter>源文件\DataStructureTest</Filter>
     </ClCompile>
   </ItemGroup>

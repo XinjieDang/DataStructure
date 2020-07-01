@@ -6,7 +6,7 @@
 using namespace std;
 //------------------------------栈的顺序存储结构---------------------------------------------
 typedef char  ElemType;     // 数据元素的类型
-const int MAXSIZE = 50;     // 数组的容量
+const int MAXSIZE = 3;     // 数组的容量
 class SqStack
 {
 private:
@@ -21,13 +21,13 @@ public:
     void PrintOut();
     int IsEmpty(void)const;
     void InitStack();
-    bool BracketsCheck(char* str);
+    bool IsMatch(char* str);
 };
 //-------------------------------------------------------------
 SqStack::SqStack(void) :top(0) { }
 int  SqStack::SetEmpty()
 {
-    return top == 0;
+    return top == -1;
 }
 void  SqStack::push( const ElemType e)
 {
@@ -64,15 +64,15 @@ void SqStack::PrintOut()
 }
 int SqStack::IsEmpty(void)const
 {
-    if (top == 0) return 1;
+    if (top == -1) return 1;
     else return 0;
 }
 
 void SqStack::InitStack() {//创建空栈
-    top = 0;
+    top = -1;
 }
 
-bool SqStack::BracketsCheck(char* str)//括号匹配
+bool SqStack::IsMatch(char* str)//括号匹配
 {
     int i = 0;
     char temp = NULL;
@@ -90,21 +90,22 @@ bool SqStack::BracketsCheck(char* str)//括号匹配
         case '}'://判断遇到的是不是右括号，是则将当前栈顶元素出栈，与右括号比较,若匹配则继续往下扫描
             temp=pop();
             if (temp != '{') {//
-                printf("括号不匹配\n");
+                //printf("括号不匹配\n");
+                cout << "括号不匹配" << endl;
                 return false;
             }
             break;
         case ')':
             temp = pop();
             if (temp != '(') {
-                printf("括号不匹配\n");
+                cout << "括号不匹配" << endl;
                 return false;
             }
             break;
         case ']':
             temp = pop();
             if (temp != '[') {
-                printf("括号不匹配\n");
+                cout << "括号不匹配" << endl;
                 return false;
             }
             break;
@@ -114,11 +115,11 @@ bool SqStack::BracketsCheck(char* str)//括号匹配
         i++;//扫描下一个元素
     }
     if (!IsEmpty()) {
-        printf("括号不匹配\n");
+        cout << "括号不匹配" << endl;
         return false;
     }
     else {
-        printf("括号匹配\n");
+        cout << "括号匹配" << endl;
         return true;
     }
 
@@ -138,7 +139,8 @@ int main(int argc, char* argv[])
         cout << "\n\n    3..括号匹配";
         cout << "\n\n    4..结束程序";
         cout << "\n******************************** ";
-        cout << "\n    请输入你的选择(1,2,3,4,5,6)";    cin >> k;
+        cout << "\n    请输入你的选择(1,2,3,4,5,6)"; 
+        cin >> k;
         switch (k) {
         case 1: {cout << "\n 入栈，数据 e=?";
             cin >> e;
@@ -153,10 +155,10 @@ int main(int argc, char* argv[])
         }break;
         case 3:
         {  cout << "\n 括号匹配,请输入表达式";
-        char brackets[10]; 
-        cin >> brackets;
+        char str[10]; 
+        cin >> str;
         as.InitStack();//清空栈
-        as.BracketsCheck(brackets);
+        as.IsMatch(str);
         }break;
         default:break;
         } //switch
