@@ -75,5 +75,11 @@
     <ClCompile Include="05_Str1761300127.cpp">
       <Filter>源文件\DataStructureTest</Filter>
     </ClCompile>
+    <ClCompile Include="06_Binary treecpp176130027.cpp">
+      <Filter>源文件\DataStructureTest</Filter>
+    </ClCompile>
+    <ClCompile Include="Haffuman.cpp">
+      <Filter>源文件\DataStructureTest</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,39 +1,30 @@
-#include<iostream>
-using namespace std;
+#include <iostream>
 #include <conio.h>
-#include <string.h>//c++ 串库
+#include <string.h>
+#pragma warning(disable : 4996)
+using namespace std;
 class String
 {
 public:
-    String()//初始化一个空串
-    {
-        size = 0;
-        str = NULL;
-    };
-    ~String() 
-    {
-        delete[] str;
-    };
+    String() {};
+    ~String() {};
     String SubString(int pos, int num);
     void Insert(String t, int pos);
     void Delete(int pos, int num);
     void Creat();
     void Display();
 private:
-    char* str;//串值
-    int size;//串长
+    char* str;
+    int size;
 };
 //生成新字符串函数
 void String::Creat()
 {
     char* s = new char(100);
     cin >> s;
-    size = strlen(s); //strlen 串长度
+    size = strlen(s);
     str = new char[size];
     if (str == 0)  cout << "没有申请到空间！";
-    //strcpy函数
-    //就是将 s字符数组复制到str数组中，如果str数组本身有数据，
-    //会把s里的数据全部复制到str中，如果str中有数据小于s地址长度的将会被覆盖，而大于s长度的将保留。
     strcpy(str, s);
 }
 //输出
@@ -46,32 +37,84 @@ void String::Display()
 //求子串
 String String::SubString(int pos, int num)
 {
-    char* strs;//串值
-    if (0 <= pos && pos + num < size && 0 <= num)
+    //将此成员函数补充完整，使得程序能够正确运行
+    String strs;
+    if (pos >= 0 && pos < size)//判断截取位置
     {
-        char* sub = new char(num + 1);//申请临时空间
-        const char* strp;
-        strncpy(sub, strp + pos, num);
-        sub[num] = '\0';
-        String cs(sub);
-        strcpy(strs, sub);
+        strs.str = new char[num + 1];// 申请临时空间
+        for (int i = 0; i < num; i++)// 截取str 0-n中的字符
+        {
+            strs.str[i] = str[pos + i - 1];
+        }
+        strs.str[num] = '\0';
+        strs.size = num;//设置 str 大小
         return strs;
     }
+    else
+    {
+        strs.size = -1;
+        return strs;
+    }
+
 }
 //插入运算:在串对象s的pos位置后插入一个串t
 void String::Insert(String t, int pos)
 {
     //将此成员函数补充完整，使得程序能够正确运行
+    if (pos<0 || pos>size)
+    {
+        cout << "插入位置错误";
+    }
+    String strs;
+    strs.size = size + t.size;
+    strs.str = new char[strs.size + 1];
+    for (int i = 0; i <= pos - 1; i++)
+    {
+        strs.str[i] = str[i];
+    }
+    for (int j = 0; j <=t.size; j++)
+    {
+        strs.str[j+pos] = t.str[j];
+    }
+    for (int k = pos; k<= size; k++)
+    {
+        strs.str[k+ t.size] = str[k];
+        str = strs.str;
+        size = strs.size;
+    }
+
 }
 //删除 :删除串中的一个子串
 void  String::Delete(int pos, int num)
 {
     //将此成员函数补充完整，使得程序能够正确运行
+    if (pos<0 || pos>size)
+    {
+        cout << "输入的位置非法";
+        return;
+    }
+    else
+    {
+        String cs;
+        cs.size = size - num;
+        cs.str = new char[cs.size + 1];
+        for (int i = 0; i <= pos - 1; i++)
+        {
+            cs.str[i] = str[i];
+        }
+        for (int k = pos; k <= size - num; k++)
+        {
+            cs.str[k] = str[k + num];
+        }
+        str = cs.str;
+        size = cs.size;
+    }
+
+   
 }
 //主函数
 int main(int argc, char* argv[])
 {
-    
     int pos, num, k;
     String s, s1, t;
     do {
